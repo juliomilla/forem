@@ -143,8 +143,10 @@ module Forem
 
     protected
     def set_first_post_user
-      post = posts.first
-      post.user = user
+      unless user.nil?
+        post = posts.first
+        post.user = user
+      end
     end
 
     def skip_pending_review
