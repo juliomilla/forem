@@ -39,7 +39,7 @@ module Forem
     after_create :skip_pending_review, :unless => :moderated?
 
     scope :with_user, -> { includes :user }
-    scope :with_last_post, -> { includes :last_post }
+    scope :with_last_post, -> { includes last_post: {user: {}, topic: {}, forum: {} } }
 
     class << self
       def visible
