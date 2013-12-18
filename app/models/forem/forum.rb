@@ -14,6 +14,8 @@ module Forem
     has_many :moderators, :through => :moderator_groups, :source => :group
     has_many :moderator_groups
 
+    belongs_to :last_post, class_name: 'Post'
+
     validates :category, :name, :description, :presence => true
 
     alias_attribute :title, :name

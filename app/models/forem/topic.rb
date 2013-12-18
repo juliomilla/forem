@@ -22,7 +22,7 @@ module Forem
     extend FriendlyId
     friendly_id :subject, :use => [:slugged, :finders]
 
-    belongs_to :forum
+    belongs_to :forum, counter_cache: true
     belongs_to :user, :class_name => Forem.user_class.to_s
     has_many   :subscriptions
     has_many   :posts, -> { order "forem_posts.created_at ASC"}, :dependent => :destroy
