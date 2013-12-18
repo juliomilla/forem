@@ -8,6 +8,8 @@ module Forem
     has_many :forums
     validates :name, :presence => true
 
+    scope :with_forums_topics_posts, -> { includes forums: { topics: {}, last_post: { :user } } }
+
     def to_s
       name
     end
