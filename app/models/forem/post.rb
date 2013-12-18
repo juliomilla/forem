@@ -45,6 +45,8 @@ module Forem
 
     def set_as_last_post
       forum.last_post = self
+      topic.last_post = self
+      topic.save
       forum.save
     end
 

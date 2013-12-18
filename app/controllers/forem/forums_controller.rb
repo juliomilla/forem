@@ -10,11 +10,12 @@ module Forem
     def show
       authorize! :show, @forum
       register_view
-      
+      @topics = @topics.with_user.with_last_post
+
       @topics = if forem_admin_or_moderator?(@forum)
-        @forum.topics.with_user
+        @forum.topics
       else
-        @forum.topics.with_user.visible.approved_or_pending_review_for(forem_user)
+        @forum.topics.visible.approved_or_pending_review_for(forem_user)
       end
 
       @topics = @topics.by_pinned_or_most_recent_post

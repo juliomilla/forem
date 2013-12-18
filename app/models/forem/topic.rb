@@ -24,6 +24,8 @@ module Forem
 
     belongs_to :forum, counter_cache: true
     belongs_to :user, :class_name => Forem.user_class.to_s
+    belongs_to :last_post, class_name: 'Post'
+
     has_many   :subscriptions
     has_many   :posts, -> { order "forem_posts.created_at ASC"}, :dependent => :destroy
     accepts_nested_attributes_for :posts
@@ -37,6 +39,7 @@ module Forem
     after_create :skip_pending_review, :unless => :moderated?
 
     scope :with_user, -> { includes :user }
+    scope :with_last_post, -> { includes :last_post }
 
     class << self
       def visible
