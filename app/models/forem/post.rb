@@ -40,8 +40,14 @@ module Forem
     after_save :email_topic_subscribers, :if => Proc.new { |p| p.approved? && !p.notified? }
 
     after_create :increment_A_counter_cache
+    after_create :set_as_last_post
     after_destroy :decrement_A_counter_cache
-    
+
+    def set_as_last_post
+      forum.last_post = self
+      forum.save
+    end
+
     def increment_A_counter_cache
         Forum.increment_counter( 'posts_count', self.forum.id )
     end
