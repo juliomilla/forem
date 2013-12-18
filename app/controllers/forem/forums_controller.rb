@@ -12,9 +12,9 @@ module Forem
       register_view
       
       @topics = if forem_admin_or_moderator?(@forum)
-        @forum.topics
+        @forum.topics.with_user
       else
-        @forum.topics.visible.approved_or_pending_review_for(forem_user)
+        @forum.topics.with_user.visible.approved_or_pending_review_for(forem_user)
       end
 
       @topics = @topics.by_pinned_or_most_recent_post

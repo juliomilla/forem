@@ -36,6 +36,8 @@ module Forem
     after_create :subscribe_poster
     after_create :skip_pending_review, :unless => :moderated?
 
+    scope :with_user, -> { includes :user }
+
     class << self
       def visible
         where(:hidden => false)
