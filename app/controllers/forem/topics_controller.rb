@@ -5,7 +5,7 @@ module Forem
     before_filter :find_forum
     before_filter :block_spammers, :only => [:new, :create]
 
-    def fresh_topic_page
+    def fresh_topics
       limit = params[:limit]
       offset = params[:offset]
       limit |= 10
