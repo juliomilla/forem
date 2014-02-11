@@ -5,6 +5,8 @@ module Forem
     before_filter :find_forum
     before_filter :block_spammers, :only => [:new, :create]
 
+    skip_before_filter only: [:fresh_topics]
+    
     def fresh_topics
       limit = params[:limit]
       offset = params[:offset]
