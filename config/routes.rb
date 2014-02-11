@@ -10,6 +10,9 @@ Forem::Engine.routes.draw do
     end
   end
 
+  resource :topics do
+    get 'fresh_topics', as: :fresh_topics, controller: :topics, action: :fresh_topics
+  end
   resources :topics, :only => [:new, :create, :index, :show, :destroy] do
     resources :posts
   end
