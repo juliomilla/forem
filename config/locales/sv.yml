@@ -121,6 +121,12 @@ sv:
         'true': Den här tråden är nu fastnålad.
         'false': Den här tråden är nu inte längre fastnålad.
     topics:
+      list:
+        topic: Tråd
+        post: Inlägg
+        latest_contributor: Senaste postare
+        freshness: Fräschhet
+        user_missing: Användare saknas
       show:
         reply: Svara
         delete: Ta bort
