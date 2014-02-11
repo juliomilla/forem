@@ -4,7 +4,7 @@ module Forem
     helper 'forem/topics'
 
     def index
-      @fresh_topics = Forem::Topics.order('last_post_at DESC').limit(10)
+      @fresh_topics = Forem::Topic.order('last_post_at DESC').limit(10)
       @categories = Forem::Category.with_forums_topics_posts.all
     end
 
