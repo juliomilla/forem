@@ -14,6 +14,7 @@ sv:
       cannot_create_post: Du kan inte göra ett nytt inlägg vid detta tillfälle.
       show_more: Visa fler
       create_new_topic: Skapa ny tråd
+      search: "Sök"
     access_denied: "Du har inte tillåtelse att göra det."
     admin:
       area: Administratörsområde
