@@ -12,7 +12,8 @@ sv:
       flagged_for_spam: Ditt konto har flaggats för spam.
       cannot_create_topic: Du kan inte skapa en ny tråd vid detta tillfälle.
       cannot_create_post: Du kan inte göra ett nytt inlägg vid detta tillfälle.
-
+      show_more: Visa fler
+      create_new_topic: Skapa ny tråd
     access_denied: "Du har inte tillåtelse att göra det."
     admin:
       area: Administratörsområde
