@@ -21,6 +21,9 @@ sv:
       cite: "Citera"
       flag: "Flagga"
       reply: "Svara"
+      created: "Skapad"
+      by: "av"
+      latest_reply_by: "Senaste svar av"
     access_denied: "Du har inte tillåtelse att göra det."
     admin:
       area: Administratörsområde
