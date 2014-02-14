@@ -1,4 +1,11 @@
 sv:
+  views:
+    pagination:
+      first: "&laquo; Första"
+      last: "Sista &raquo;"
+      previous: "&lsaquo; Föregående"
+      next: "Nästa &rsaquo;"
+      truncate: "&hellip;"
   forem:
     general:
       forum: Forum
