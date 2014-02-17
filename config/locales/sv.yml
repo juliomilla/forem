@@ -31,6 +31,7 @@ sv:
       created: "Skapad"
       by: "av"
       latest_reply_by: "Senaste svar av"
+      reply_to_topic: "Svara i tråden"
     access_denied: "Du har inte tillåtelse att göra det."
     admin:
       area: Administratörsområde
@@ -111,6 +112,7 @@ sv:
         no_option_selected: Inget moderationsval var valt.
       received_reply: En tråd som du prenumererar på har fått ett nytt inlägg.
       reply: Svara
+      send: Skicka
       quote: Citera
       delete: Ta bort
       created: Den här tråden har skapats.
