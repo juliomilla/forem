@@ -165,6 +165,7 @@ sv:
           'false': Nåla fast den här tråden
     post:
       buttons:
+        send: Skicka
         reply: Svara
         edit: Redigera
       created: Ditt svar har postats
