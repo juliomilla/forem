@@ -32,3 +32,5 @@ end
 if RUBY_VERSION < '1.9.2'
   gem 'nokogiri', '~> 1.5.9'
 end
+
+gem 'bbcoder'

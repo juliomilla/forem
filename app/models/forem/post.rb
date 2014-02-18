@@ -119,10 +119,12 @@ module Forem
     end
 
     def email_topic_subscribers
-      topic.subscriptions.includes(:subscriber).find_each do |subscription|
-        subscription.send_notification(id) if subscription.subscriber != user
+      if topic 
+        topic.subscriptions.includes(:subscriber).find_each do |subscription|
+          subscription.send_notification(id) if subscription.subscriber != user
+        end
+        update_attribute(:notified, true)
       end
-      update_attribute(:notified, true)
     end
 
     def set_topic_last_post_at
