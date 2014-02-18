@@ -32,6 +32,7 @@ sv:
       by: "av"
       latest_reply_by: "Senaste svar av"
       reply_to_topic: "Svara i tråden"
+      user_missing: Användare saknas
     access_denied: "Du har inte tillåtelse att göra det."
     admin:
       area: Administratörsområde
