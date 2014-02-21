@@ -3,12 +3,21 @@ require 'spec_helper'
 describe "posts" do
   let(:forum) { FactoryGirl.create(:forum) }
   let(:user) { FactoryGirl.create(:user) }
-  let(:topic) { FactoryGirl.create(:approved_topic, :forum => forum, :user => user) }
+  let(:topic) { FactoryGirl.create(:approved_topic, :forum => forum, :forem_user => user) }
 
   context "not signed in users" do
     it "cannot begin to post a reply" do
       visit new_topic_post_path(topic)
       flash_alert!("You must sign in first.")
+    end
+  end
+
+  context "posts with deleted users" do
+    it "can be viewed" do
+      first_post = topic.posts.first
+      first_post.update_column(:user_id, nil)
+      visit forum_topic_path(forum, topic)
+      page.should have_content(topic.subject)
     end
   end
 
@@ -71,6 +80,23 @@ describe "posts" do
         flash_alert!("Your reply could not be posted.")
         visit root_path
         page.should_not have_content("Your reply could not be posted.")
+      end
+    end
+
+    context "quoting" do
+      it "cannot quote deleted post" do
+        other_user = FactoryGirl.create(:user, :login => 'other_forem_user', :email => "maryanne@boblaw.com")
+        topic.posts << FactoryGirl.build(:approved_post, :user => other_user)
+        @second_post = topic.posts[1]
+
+        visit forum_topic_path(forum, topic)
+        @second_post.delete
+
+        within(selector_for(:second_post)) do
+          click_link("Quote")
+        end
+
+        flash_notice!(I18n.t("forem.post.cannot_quote_deleted_post"))
       end
     end
 
