@@ -20,6 +20,7 @@ module Forem
 
     belongs_to :topic, counter_cache: true
     belongs_to :user,     :class_name => Forem.user_class.to_s, counter_cache: :forum_posts_count
+    belongs_to :forem_user, :class_name => Forem.user_class.to_s, :foreign_key => :user_id, counter_cache: :forum_posts_count
     belongs_to :reply_to, :class_name => "Post"
 
     has_many :replies, :class_name  => "Post",
