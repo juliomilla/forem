@@ -1,7 +1,8 @@
 module Forem
   class Post < ActiveRecord::Base
     include Workflow
-
+    include Concerns::Flaggable
+    
     workflow_column :state
     workflow do
       state :pending_review do

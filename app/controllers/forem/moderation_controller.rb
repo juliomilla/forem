@@ -39,6 +39,5 @@ module Forem
         raise CanCan::AccessDenied
       end
     end
-
   end
 end
