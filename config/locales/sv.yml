@@ -27,6 +27,7 @@ sv:
       edit: "Ändra"
       cite: "Citera"
       flag: "Flagga"
+      flagged: "Flaggad"
       reply: "Svara"
       created: "Skapad"
       by: "av"
