@@ -3,6 +3,7 @@ require 'friendly_id'
 module Forem
   class Topic < ActiveRecord::Base
     include Forem::Concerns::Viewable
+    include Forem::Concerns::NilUser
     include Workflow
 
     workflow_column :state
@@ -24,6 +25,7 @@ module Forem
 
     belongs_to :forum, counter_cache: true
     belongs_to :user, :class_name => Forem.user_class.to_s
+    belongs_to :forem_user, :class_name => Forem.user_class.to_s, :foreign_key => :user_id
     belongs_to :last_post, class_name: 'Post'
 
     has_many   :subscriptions
@@ -34,7 +36,6 @@ module Forem
     validates :user, :presence => true
 
     before_save  :set_first_post_user
-    after_save   :approve_user_and_posts, :if => :approved?
     after_create :subscribe_poster
     after_create :skip_pending_review, :unless => :moderated?
 
@@ -86,20 +87,20 @@ module Forem
 
     # Cannot use method name lock! because it's reserved by AR::Base
     def lock_topic!
-      update_attribute(:locked, true)
+      update_column(:locked, true)
     end
 
     def unlock_topic!
-      update_attribute(:locked, false)
+      update_column(:locked, false)
     end
 
     # Provide convenience methods for pinning, unpinning a topic
     def pin!
-      update_attribute(:pinned, true)
+      update_column(:pinned, true)
     end
 
     def unpin!
-      update_attribute(:pinned, false)
+      update_column(:pinned, false)
     end
 
     def moderate!(option)
@@ -150,15 +151,12 @@ module Forem
     end
 
     def skip_pending_review
-      update_attribute(:state, 'approved')
+      update_column(:state, 'approved')
     end
 
-    def approve_user_and_posts
-      return unless state_changed?
-
+    def approve
       first_post = posts.by_created_at.first
       first_post.approve! unless first_post.approved?
-      user.update_attribute(:forem_state, 'approved') if user.forem_state != 'approved'
     end
 
     def moderated?

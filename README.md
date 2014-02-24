@@ -9,10 +9,6 @@ Forem is an engine for Rails that aims to be the best little forum system ever.
 The end goal is to have an engine that can be dropped into an application that
 provides the basic functionality of forums, topics and posts.
 
-**We are currently undergoing large changes.** If you want to use this project, please
-keep this in mind. You can view a list of the intended changes on our [Version 1.0
-Roadmap](https://github.com/radar/forem/wiki/1.0-Roadmap)
-
 # Demo
 
 A demo application can be found at [http://forem.heroku.com](http://forem.heroku.com), and the source for this application can be found on the [forem.heroku.com
@@ -24,13 +20,21 @@ Installing Forem is easy.
 
 ## Specify Gem dependencies
 
+If you're using Rails 3:
+
 ```ruby
-gem 'forem', :git => "git://github.com/radar/forem.git"
+gem 'forem', :github => "radar/forem", :branch => "rails3"
+```
+
+For Rails 4, use the `rails4` branch:
+
+```ruby
+gem 'forem', :github => "radar/forem", :branch => "rails4"
 ```
 
 And then one of `kaminari` or `will_paginate`
 ```ruby
-gem 'kaminari', '0.15.0'
+gem 'kaminari', '0.15.1'
 # OR
 gem 'will_paginate', '3.0.5'
 ```

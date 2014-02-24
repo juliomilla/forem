@@ -21,7 +21,7 @@ module Forem
     alias_attribute :title, :name
 
     # Fix for #339
-    default_scope { order('name ASC') }
+    default_scope { order(:name) }
 
     scope :with_last_post, -> { includes :last_post }
 
