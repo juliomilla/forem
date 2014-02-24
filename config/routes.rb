@@ -4,7 +4,7 @@ Forem::Engine.routes.draw do
     resources :flags, only: [:create, :destroy]
   end
   resources :topics, only: [:new, :create, :index, :show, :destroy] do
-    resources :posts
+    resources :posts, concerns: [:flaggable]
   end
   resource :topics do
       get 'fresh_topics', as: :fresh_topics, controller: :topics, action: :fresh_topics
