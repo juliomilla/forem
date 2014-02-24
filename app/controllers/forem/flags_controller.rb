@@ -1,5 +1,6 @@
 module Forem
   class FlagsController < Forem::ApplicationController
+
     def create
 
       if params[:post_id]

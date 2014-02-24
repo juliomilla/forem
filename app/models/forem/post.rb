@@ -1,8 +1,10 @@
 module Forem
   class Post < ActiveRecord::Base
     include Workflow
+    
     include Concerns::Flaggable
-    include Forem::Concerns::NilUser
+
+    include Concerns::NilUser
 
     workflow_column :state
     workflow do
