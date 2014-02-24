@@ -8,7 +8,7 @@ module Forem
       end
 
       @flag = Flag.new
-      @flag.flaggable = flaggable
+      @flag.forem_flaggable = flaggable
       @flag.user = current_user
 
       if @flag.save

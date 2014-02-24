@@ -4,7 +4,7 @@ module Forem
     
     include Concerns::Flaggable
 
-    include Concerns::NilUser
+    # include Concerns::NilUser
 
     workflow_column :state
     workflow do
