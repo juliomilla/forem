@@ -41,7 +41,7 @@ sv:
       welcome: "Välkommen till forems administratörsområde."
       forum:
         index: Hanter Forum
-        new: Skapar ett nytt forum
+        new: Skapa ett nytt forum
         new_link: Nytt Forum
         deleted: Det valda forumet har tagits bort. 
         created: Det här forumet har skapats.
@@ -66,7 +66,7 @@ sv:
           add_member: Lägg till
       category:
         index: Hantera Forumkategorier
-        new: Skapar en ny Forumkategori
+        new: Skapa en ny Forumkategori
         new_link: Ny Forumkategori
         deleted: Den valda forumkategorin har tagits bort.
         created: Den här forumkategorin har skapats.
@@ -86,7 +86,7 @@ sv:
     forum:
       header: "Visar %{title}"
       forums: Forum
-      new: Skapar ett nytt forum
+      new: Skapa ett nytt forum
       edit: "Redigerar %{title}-forumet"
       topics_count:
         zero: 0 trådar
@@ -119,7 +119,7 @@ sv:
       quote: Citera
       delete: Ta bort
       created: Den här tråden har skapats.
-      new: Skapar en ny tråd
+      new: Skapa en ny tråd
       edit: Redigerar tråd
       not_created: Den här tråden kunde inte skapas.
       deleted: Din tråd har tagits bort.
