@@ -22,6 +22,7 @@ sv:
       show_more: Visa fler
       create_new_topic: Skapa ny tråd
       search: "Sök"
+      search_discussion: "Sök diskussion..."
       latest_discussions: "Senaste diskussionerna"
       delete: "Ta bort"
       edit: "Ändra"
