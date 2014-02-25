@@ -183,6 +183,7 @@ sv:
       cannot_delete: Du kan inte ta bort ett inlägg som du inte äger.
       in_reply_to: I svar på
       placeholder: Skriv ditt svar...
+      new_post_placeholder: Skriv det första inlägget i tråden...
     posts:
       moderation:
         moderate: Moderera
