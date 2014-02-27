@@ -144,6 +144,12 @@ sv:
         'true': Den här tråden är nu fastnålad.
         'false': Den här tråden är nu inte längre fastnålad.
     topics:
+      add_poll: Lägg till omröstning
+      question: Fråga
+      your_question: Din fråga...
+      description: Beskrivning
+      choice: Alternativ
+      choice_ellipsis: Alternativ...
       list:
         topic: Tråd
         post: Inlägg
@@ -166,12 +172,6 @@ sv:
         pin:
           'true': Ta bort fastnålningen av den är tråden
           'false': Nåla fast den här tråden
-        add_poll: Lägg till omröstning
-        question: Fråga
-        your_question: Din fråga...
-        description: Beskrivning
-        choice: Alternativ
-        choice_ellipsis: Alternativ...
     post:
       buttons:
         send: Skicka
