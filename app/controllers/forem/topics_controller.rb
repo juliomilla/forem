@@ -70,7 +70,7 @@ module Forem
     protected
 
     def topic_params
-      params.require(:topic).permit(:subject, posts_attributes: [[:text]], poll: [[:text], poll_options: [[:text]]])
+      params.require(:topic).permit(:subject, posts_attributes: [[:text]], poll_attributes: [:text, poll_options_attributes: [[:text]]])
     end
     
     def create_successful
