@@ -43,7 +43,7 @@ sv:
         index: Hanter Forum
         new: Skapa ett nytt forum
         new_link: Nytt Forum
-        deleted: Det valda forumet har tagits bort. 
+        deleted: Det valda forumet har tagits bort.
         created: Det här forumet har skapats.
         not_created: Det här forumet kunde inte skapas.
         updated: Det där forumet har uppdaterats.
@@ -166,6 +166,12 @@ sv:
         pin:
           'true': Ta bort fastnålningen av den är tråden
           'false': Nåla fast den här tråden
+        add_poll: Lägg till omröstning
+        question: Fråga
+        your_question: Din fråga...
+        description: Beskrivning
+        choice: Alternativ
+        choice_ellipsis: Alternativ...
     post:
       buttons:
         send: Skicka
@@ -225,4 +231,3 @@ sv:
   by: av
   started_by: "Startad av "
   are_you_sure: Är du säker?
-
