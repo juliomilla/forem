@@ -30,6 +30,9 @@ module Forem
 
     has_many   :subscriptions
     has_many   :posts, -> { order "forem_posts.created_at ASC"}, :dependent => :destroy
+
+    has_one :poll
+
     accepts_nested_attributes_for :posts
 
     validates :subject, :presence => true
