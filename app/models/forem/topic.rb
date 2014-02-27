@@ -34,6 +34,7 @@ module Forem
     has_one :poll
 
     accepts_nested_attributes_for :posts
+    accepts_nested_attributes_for :poll
 
     validates :subject, :presence => true
     validates :user, :presence => true

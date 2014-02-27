@@ -150,6 +150,7 @@ sv:
       description: Beskrivning
       choice: Alternativ
       choice_ellipsis: Alternativ...
+      add_poll_option: Lägg till alternativ
       list:
         topic: Tråd
         post: Inlägg
