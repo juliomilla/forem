@@ -5,7 +5,7 @@ Forem::Engine.routes.draw do
   end
   resources :topics, only: [:new, :create, :index, :show, :destroy] do
     resources :posts, concerns: [:flaggable]
-    post 'vote/:poll_option_id', controller: :polls, action: :vote
+    post 'vote/:poll_option_id', controller: :polls, action: :vote, as: :vote
   end
   resource :topics do
       get 'fresh_topics', as: :fresh_topics, controller: :topics, action: :fresh_topics
