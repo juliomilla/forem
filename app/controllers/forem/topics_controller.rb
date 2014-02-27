@@ -30,7 +30,7 @@ module Forem
       authorize! :create_topic, @forum
       @topic = @forum.topics.build
       @topic.posts.build
-      @topic.poll.build
+      @topic.poll = Poll.new
       @topic.poll.poll_options.build
     end
 
