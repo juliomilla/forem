@@ -37,8 +37,20 @@ module Forem
     def create
       authorize! :create_topic, @forum
       
-      @topic = @forum.topics.build(topic_params)
+      # @topic = @forum.topics.build(topic_params)
+      # @topic.user = forem_user
+      @topic = @forum.topics.build
       @topic.user = forem_user
+      @topic.subject = topic_params[:subject]
+      @post = @topic.posts.build
+      @post.text = topic_params[:posts_attributes][:text]
+      @topic.poll = Forem::Poll.new
+      @topic.poll.question = topic_params[:poll_attributes][:question]
+      topic_params[:poll_attributes][:poll_options_attributes].each do |k,v|
+
+        po = @topic.poll_options.build
+        po.description = v
+      end
 
       if @topic.save
         create_successful
