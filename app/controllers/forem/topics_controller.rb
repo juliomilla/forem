@@ -30,7 +30,7 @@ module Forem
       authorize! :create_topic, @forum
       @topic = @forum.topics.build
       @topic.posts.build
-      @topic.poll = Poll.new
+      @topic.poll = Forem::Poll.new
       @topic.poll.poll_options.build
     end
 
@@ -73,7 +73,7 @@ module Forem
 
     def topic_params
       # params.require(:topic).permit(:subject, posts_attributes: [[:text]])
-      params.require(:topic).permit(:subject, posts_attributes: [[:text]], poll: [:text, poll_options: [[:text]]])
+      params.require(:topic).permit(:subject, posts: [[:text]], poll: [:text, poll_options: [[:text]]])
     end
     
     def create_successful
