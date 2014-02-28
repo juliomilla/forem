@@ -36,8 +36,10 @@ module Forem
 
     def create
       authorize! :create_topic, @forum
+      
       @topic = @forum.topics.build(topic_params)
       @topic.user = forem_user
+
       if @topic.save
         create_successful
       else
@@ -72,8 +74,8 @@ module Forem
     protected
 
     def topic_params
-      # params.require(:topic).permit(:subject, posts_attributes: [[:text]])
-      params.require(:topic).permit(:subject, posts: [[:text]], poll: [:text, poll_options: [[:text]]])
+      params.require(:topic).permit(:subject, posts_attributes: [[:text]], poll_attributes: {[:question], poll_options_attributes: [:description]})
+      # params.require(:topic).permit(:subject, posts: [[:text]], poll: [:text, poll_options: [[:text]]])
     end
     
     def create_successful
