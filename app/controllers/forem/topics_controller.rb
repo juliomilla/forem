@@ -91,7 +91,7 @@ module Forem
         posts_attributes: [:text],
         poll_attributes: [
           :question,
-          poll_options_attributes: [:description]
+          poll_options_attributes: [description: []]
           ]
         )
       # params.require(:topic).permit(:subject, posts: [[:text]], poll: [:text, poll_options: [[:text]]])
