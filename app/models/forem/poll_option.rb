@@ -4,7 +4,6 @@ module Forem
     belongs_to :poll
     validates :description, presence: true
 
-
     def votes_percentage_of_total
       tot = self.poll.poll_options.pluck(:votes).inject(0) {|acc, elem| acc + elem}
       if !tot.nil? && !self.votes.nil? && self.votes > 0 && tot > 0
@@ -13,5 +12,7 @@ module Forem
         return 0
       end
     end
+
+    
   end
 end
