@@ -36,7 +36,6 @@ module Forem
 
     def create
       authorize! :create_topic, @forum
-      
       # @topic = @forum.topics.build(topic_params)
       # @topic.user = forem_user
       @topic = @forum.topics.build
@@ -50,7 +49,6 @@ module Forem
         po = @topic.poll.poll_options.build
         po.description = v[:description]
       end
-
       if @topic.save
         create_successful
       else

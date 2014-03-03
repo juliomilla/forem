@@ -7,6 +7,8 @@ sv:
       next: "Nästa &rsaquo;"
       truncate: "&hellip;"
   forem:
+    polls:
+      votes: Röster
     general:
       forum: Forum
       topics: Trådar
