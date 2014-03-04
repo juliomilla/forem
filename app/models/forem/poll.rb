@@ -6,7 +6,7 @@ module Forem
     validates :question, presence: true
     accepts_nested_attributes_for :poll_options
 
-    has_and_belongs_to_many :voting_users, class_name: Forem.user_class.to_s
+    has_many :voting_users, through: :votes, class_name: Forem.user_class.to_s
     
     def vote poll_option_id, user
       opt = self.poll_options.find(poll_option_id)
