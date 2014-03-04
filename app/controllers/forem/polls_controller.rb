@@ -8,11 +8,11 @@ module Forem
       poll_option.poll.voting_users << forem_user
 
       begin
-        saved = poll_option.save && poll_option.poll.save
+        saved = poll_option.save
       rescue
         saved = false
       end
-      
+
       if saved
         respond_to do |format|
           format.js { render nothing: true, status: 204}
