@@ -7,6 +7,7 @@ module Forem
     accepts_nested_attributes_for :poll_options
 
     has_many :votes
+    
     has_many :voting_users, through: :votes, class_name: Forem.user_class.to_s, source: :user
     
     def total_votes
