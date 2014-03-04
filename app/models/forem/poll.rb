@@ -10,8 +10,9 @@ module Forem
     has_many :voting_users, through: :votes, class_name: Forem.user_class.to_s, source: :user
     
     def total_votes
-      self.poll.poll_options.pluck(:votes).inject(0) {|acc, elem| acc + elem}
+      self.poll_options.pluck(:votes).inject(0) {|acc, elem| acc + elem}
     end
+
     # def vote poll_option_id, user
     #   opt = self.poll_options.find(poll_option_id)
     #   opt.votes = opt.votes + 1
