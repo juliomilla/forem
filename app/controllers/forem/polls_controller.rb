@@ -7,7 +7,13 @@ module Forem
       poll_option.votes = poll_option.votes + 1
       poll_option.poll.voting_users << forem_user
 
-      if poll_option.save && poll_option.poll.save
+      begin
+        saved = poll_option.save && poll_option.poll.save
+      rescue
+        saved = false
+      end
+      
+      if saved
         respond_to do |format|
           format.js { render nothing: true, status: 204}
           format.html { render nothing: true, status: 204}
