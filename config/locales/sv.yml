@@ -9,6 +9,7 @@ sv:
   forem:
     polls:
       votes: Röster
+      vote: Rösta
     general:
       forum: Forum
       topics: Trådar
