@@ -1,6 +1,7 @@
 require 'cancan'
 
 class Forem::ApplicationController < ApplicationController
+
   rescue_from CanCan::AccessDenied do
     redirect_to root_path, :alert => t("forem.access_denied")
   end
@@ -19,6 +20,7 @@ class Forem::ApplicationController < ApplicationController
   def pagination_param
     defined?(Kaminari) ? Kaminari.config.param_name : :page
   end
+
   helper_method :pagination_param
 
   private
@@ -52,5 +54,4 @@ or; 2) Set Forem.sign_in_path to a String value that represents the location of 
     forem_user && (forem_user.forem_admin? || forum.moderator?(forem_user))
   end
   helper_method :forem_admin_or_moderator?
-
 end
