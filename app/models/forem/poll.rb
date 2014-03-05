@@ -4,11 +4,12 @@ module Forem
     belongs_to :topic
     has_many :poll_options, dependent: :destroy
     validates :question, presence: true
+    
     accepts_nested_attributes_for :poll_options
 
     has_many :votes
 
-    has_many :voting_users, -> { distinct }, through: :votes, class_name: Forem.user_class.to_s, source: :user
+    has_many :voting_users, through: :votes, class_name: Forem.user_class.to_s, source: :user
     
     def total_votes
       self.poll_options.pluck(:votes).inject(0) {|acc, elem| acc + elem}
