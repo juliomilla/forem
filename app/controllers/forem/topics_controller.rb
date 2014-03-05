@@ -2,7 +2,7 @@ module Forem
   class TopicsController < Forem::ApplicationController
     helper 'forem/posts'
     before_filter :authenticate_forem_user, :except => [:show]
-    before_filter :find_forum
+    before_filter :find_forum, except: [:fresh_topics]
     before_filter :block_spammers, :only => [:new, :create]
 
     skip_before_filter only: [:fresh_topics]
@@ -20,7 +20,6 @@ module Forem
       if find_topic
         register_view(@topic, forem_user)
         @posts = find_posts(@topic)
-
         # Kaminari allows to configure the method and param used
         @posts = @posts.send(pagination_method, params[pagination_param]).per(Forem.per_page)
       end
