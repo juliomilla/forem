@@ -4,9 +4,6 @@ module Forem
     before_action :authenticate_forem_user, except: [:show]
     before_action :block_spammers, only: [:new, :create]
     
-
-
-
     def show
       if find_topic
         register_view(@topic, forem_user)
