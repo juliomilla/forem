@@ -127,8 +127,12 @@ module Forem
 
     private
     def find_forum
-      @forum = Forem::Forum.friendly.find(params[:forum_id])
-      authorize! :read, @forum
+      if params[:forum_id]
+        @forum = Forem::Forum.friendly.find(params[:forum_id])
+        authorize! :read, @forum
+      else
+        @forum = nil
+      end
     end
 
     def find_posts(topic)
