@@ -3,6 +3,15 @@ module Forem
     load_and_authorize_resource :class => 'Forem::Forum', :only => :show
     helper 'forem/topics'
 
+   def fresh_topics
+      limit = params[:limit]
+      offset = params[:offset]
+      limit |= 10
+      offset |= 0
+      @topics = Forem::Topic.order('last_post_at DESC').limit(limit).offset(offset)
+      render 'topics', layout: !request.xhr?
+    end
+    
     def index
       @fresh_topics = Forem::Topic.order('last_post_at DESC').limit(5)
       @categories = Forem::Category.with_forums_topics_posts.all

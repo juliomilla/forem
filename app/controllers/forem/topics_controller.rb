@@ -1,21 +1,11 @@
 module Forem
   class TopicsController < Forem::ApplicationController
     helper 'forem/posts'
-    before_action :authenticate_forem_user, except: [:show, :fresh_topics]
-    before_action :find_forum, except: [:fresh_topics]
+    before_action :authenticate_forem_user, except: [:show]
     before_action :block_spammers, only: [:new, :create]
     
-    skip_before_action :find_forum, only: [:fresh_topics]
-    skip_before_action :authenticate_forem_user, only: [:show, :fresh_topics]
 
-    def fresh_topics
-      limit = params[:limit]
-      offset = params[:offset]
-      limit |= 10
-      offset |= 0
-      @topics = Forem::Topic.order('last_post_at DESC').limit(limit).offset(offset)
-      render 'topics', layout: !request.xhr?
-    end
+
 
     def show
       if find_topic
@@ -127,12 +117,8 @@ module Forem
 
     private
     def find_forum
-      if params[:forum_id]
-        @forum = Forem::Forum.friendly.find(params[:forum_id])
-        authorize! :read, @forum
-      else
-        @forum = nil
-      end
+      @forum = Forem::Forum.friendly.find(params[:forum_id])
+      authorize! :read, @forum
     end
 
     def find_posts(topic)

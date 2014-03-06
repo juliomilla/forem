@@ -7,9 +7,9 @@ Forem::Engine.routes.draw do
     resources :posts, concerns: [:flaggable]
     post 'vote/:poll_option_id', controller: :polls, action: :vote, as: :vote
   end
-  resource :topics do
-      get 'fresh_topics', as: :fresh_topics, controller: :topics, action: :fresh_topics
-  end
+
+  get 'fresh_topics', as: :fresh_topics, controller: :forums, action: :fresh_topics
+
   resources :categories, only: [:index, :show]
   namespace :admin do
     root :to => "base#index"
