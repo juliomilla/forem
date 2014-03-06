@@ -2,7 +2,7 @@ module Forem
   class TopicsController < Forem::ApplicationController
     helper 'forem/posts'
     before_filter :authenticate_forem_user, :except => [:show, :fresh_topics]
-    before_filter :find_forum, except: [:fresh_topics]
+    before_filter :find_forum, except: :fresh_topics
     before_filter :block_spammers, :only => [:new, :create]
     
     def fresh_topics
@@ -10,6 +10,7 @@ module Forem
       offset = params[:offset]
       limit |= 10
       offset |= 0
+
       @topics = Forem::Topic.order('last_post_at DESC').limit(limit).offset(offset)
       render 'topics', layout: !request.xhr?
     end
@@ -22,6 +23,9 @@ module Forem
         @posts = @posts.send(pagination_method, params[pagination_param]).per(Forem.per_page)
       end
     end
+    rochstrasse 9
+    airbnb
+    
 
     def new
       authorize! :create_topic, @forum
