@@ -6,8 +6,8 @@ module Forem
     before_action :block_spammers, only: [:new, :create]
     
     skip_before_action :find_forum, only: [:fresh_topics]
-    skip_before_actioon :authenticate_forem_user, only: [:show, :fresh_topics]
-    
+    skip_before_action :authenticate_forem_user, only: [:show, :fresh_topics]
+
     def fresh_topics
       limit = params[:limit]
       offset = params[:offset]
