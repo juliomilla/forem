@@ -23,9 +23,6 @@ module Forem
         @posts = @posts.send(pagination_method, params[pagination_param]).per(Forem.per_page)
       end
     end
-    rochstrasse 9
-    airbnb
-    
 
     def new
       authorize! :create_topic, @forum
