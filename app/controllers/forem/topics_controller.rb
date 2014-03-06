@@ -1,16 +1,15 @@
 module Forem
   class TopicsController < Forem::ApplicationController
     helper 'forem/posts'
-    before_filter :authenticate_forem_user, :except => [:show, :fresh_topics]
-    before_filter :find_forum, except: :fresh_topics
-    before_filter :block_spammers, :only => [:new, :create]
+    before_action :authenticate_forem_user, except: [:show, :fresh_topics]
+    before_action :find_forum, except: [:fresh_topics]
+    before_action :block_spammers, only: [:new, :create]
     
     def fresh_topics
       limit = params[:limit]
       offset = params[:offset]
       limit |= 10
       offset |= 0
-
       @topics = Forem::Topic.order('last_post_at DESC').limit(limit).offset(offset)
       render 'topics', layout: !request.xhr?
     end
