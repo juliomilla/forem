@@ -2,7 +2,7 @@ module Forem
   class TopicsController < Forem::ApplicationController
     helper 'forem/posts'
     before_filter :authenticate_forem_user, :except => [:show]
-    # before_filter :find_forum, except: :fresh_topics
+    before_filter :find_forum
     before_filter :block_spammers, :only => [:new, :create]
     
     # def fresh_topics
