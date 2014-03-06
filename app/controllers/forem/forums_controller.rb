@@ -9,7 +9,7 @@ module Forem
       limit ||= 10
       offset ||= 0
       @topics = Forem::Topic.order('last_post_at DESC').limit(limit).offset(offset)
-      render 'topics_lis', layout: !request.xhr?
+      render 'forem/forums/topics_list', layout: !request.xhr?
     end
 
     def index
