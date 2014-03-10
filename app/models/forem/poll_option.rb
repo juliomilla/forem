@@ -1,6 +1,6 @@
 module Forem
   class PollOption < ActiveRecord::Base
-    
+
     belongs_to :poll
     validates :description, presence: true
 
@@ -13,6 +13,10 @@ module Forem
       else
         return 0
       end
+    end
+    
+    def top_voted?
+      return self.poll.poll_options.pluck(:votes).sort.last <= self.votes
     end
   end
 end
