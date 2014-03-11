@@ -19,7 +19,7 @@ module Forem
       if find_topic
         register_view(@topic, forem_user)
         @posts = find_posts(@topic)
-        @original_post = @topic.posts.order('created_at').limit(1).first
+        @original_post = @topic.posts.order('created_at DESC').limit(1).first
         # Kaminari allows to configure the method and param used
         @posts = @posts.send(pagination_method, params[pagination_param]).per(Forem.per_page)
       end
