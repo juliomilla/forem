@@ -4,7 +4,7 @@ module Forem
     before_filter :authenticate_forem_user, :except => [:show]
     before_filter :find_forum
     before_filter :block_spammers, :only => [:new, :create]
-    
+
     # def fresh_topics
     #   limit = params[:limit]
     #   offset = params[:offset]
@@ -19,6 +19,7 @@ module Forem
       if find_topic
         register_view(@topic, forem_user)
         @posts = find_posts(@topic)
+        @original_post = @topic.posts.order('created_at').limit(1).first
         # Kaminari allows to configure the method and param used
         @posts = @posts.send(pagination_method, params[pagination_param]).per(Forem.per_page)
       end
@@ -91,7 +92,7 @@ module Forem
         )
       # params.require(:topic).permit(:subject, posts: [[:text]], poll: [:text, poll_options: [[:text]]])
     end
-    
+
     def create_successful
       redirect_to [@forum, @topic], :notice => t("forem.topic.created")
     end
