@@ -92,6 +92,8 @@ sv:
       subheading: "Obs! Här ansvarar du själv för vad du skriver. Eventuella brott kan komma att polisanmälas."
       read: "Läs"
       the_terms: "villkoren."
+      rss-flow: "RSS-flöde"
+      for_all_of_moviezines_forums: "för hela MovieZines forum"
       header: "Visar %{title}"
       forums: Forum
       new: Skapa ett nytt forum
