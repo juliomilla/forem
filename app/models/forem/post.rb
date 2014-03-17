@@ -32,7 +32,7 @@ module Forem
 
     validates :text, :presence => true
 
-    has_one :forum, through: :topic#, counter_cache: true
+    has_one :forum, through: :topic, counter_cache: true
     # delegate :forum, :to => :topic
 
     # has_one :forum, through: :topic, counter_cache: :posts_count
