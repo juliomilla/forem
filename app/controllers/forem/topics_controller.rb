@@ -42,12 +42,16 @@ module Forem
       @topic.subject = topic_params[:subject]
       @post = @topic.posts.build
       @post.text = topic_params[:posts_attributes][:text]
-      @topic.poll = Forem::Poll.new
-      @topic.poll.question = topic_params[:poll_attributes][:question]
-      topic_params[:poll_attributes][:poll_options_attributes].each do |k,v|
-        po = @topic.poll.poll_options.build
-        po.description = v[:description]
+      if topic_params[:poll_attributes]
+        @topic.poll = Forem::Poll.new
+        @topic.poll.question = topic_params[:poll_attributes][:question]
+
+        topic_params[:poll_attributes][:poll_options_attributes].each do |k,v|
+          po = @topic.poll.poll_options.build
+          po.description = v[:description]
+        end
       end
+      
       if @topic.save
         create_successful
       else
