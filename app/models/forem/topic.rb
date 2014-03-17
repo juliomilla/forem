@@ -1,5 +1,4 @@
 require 'friendly_id'
-
 module Forem
   class Topic < ActiveRecord::Base
     include Forem::Concerns::Viewable
@@ -24,7 +23,7 @@ module Forem
     friendly_id :subject, :use => [:slugged, :finders]
 
     belongs_to :forum, counter_cache: true
-    belongs_to :user, :class_name => Forem.user_class.to_s
+    # belongs_to :user, :class_name => Forem.user_class.to_s
     belongs_to :forem_user, :class_name => Forem.user_class.to_s, :foreign_key => :user_id
     belongs_to :last_post, class_name: 'Post'
 

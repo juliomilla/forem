@@ -4,9 +4,7 @@ class CreateForemForums < ActiveRecord::Migration
       t.string :title
       t.text :description
     end
-
   end
-
   def down
     drop_table :forem_forums
   end
