@@ -32,9 +32,10 @@ module Forem
 
     validates :text, :presence => true
 
+    belongs_to :forum, through: :topic, counter_cache: true
     # delegate :forum, :to => :topic
 
-    has_one :forum, through: :topic, counter_cache: :posts_count
+    # has_one :forum, through: :topic, counter_cache: :posts_count
 
     after_create :set_topic_last_post_at
     after_create :subscribe_replier, :if => :user_auto_subscribe?
