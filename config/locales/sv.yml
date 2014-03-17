@@ -88,6 +88,10 @@ sv:
       not_signed_in: Du måste logga in först.
       access_denied: Åtkomst nekad.
     forum:
+      welcome: "Välkommen till MovieZines forum"
+      subheading: "Obs! Här ansvarar du själv för vad du skriver. Eventuella brott kan komma att polisanmälas."
+      read: "Läs"
+      the_terms: "villkoren."
       header: "Visar %{title}"
       forums: Forum
       new: Skapa ett nytt forum
