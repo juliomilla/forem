@@ -5,7 +5,11 @@ module Forem
     end
 
     def to_s
-      "[deleted]"
+      "Användaren borttagen"
+    end
+
+    def name
+      "Användaren borttagen"
     end
   end
 end
