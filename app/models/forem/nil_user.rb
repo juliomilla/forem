@@ -1,7 +1,7 @@
 module Forem
   class NilUser
     def email
-      "nobody@example.com"
+      "Användaren borttagen"
     end
 
     def to_s
@@ -10,9 +10,6 @@ module Forem
 
     def name
       "Användaren borttagen"
-    end
-    def marked_for_destruction?
-      false
     end
   end
 end
