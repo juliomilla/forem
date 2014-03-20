@@ -162,6 +162,8 @@ sv:
       choice: Alternativ
       choice_ellipsis: Alternativ...
       add_poll_option: Lägg till alternativ
+      hide_first_post: Dölj första inlägg
+      show_first_post: Visa första inlägg
       list:
         topic: Tråd
         post: Inlägg
