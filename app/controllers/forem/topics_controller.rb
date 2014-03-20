@@ -21,12 +21,6 @@ module Forem
         @posts = find_posts(@topic)
         @original_post = @topic.posts.order('created_at DESC').limit(1).first
         # Kaminari allows to configure the method and param used
-        
-        if !params[pagination_param]
-          last_page = (@topic.posts_count / Forem.per_page).ceil
-          params[pagination_param] = last_page
-        end
-        
         @posts = @posts.send(pagination_method, params[pagination_param]).per(Forem.per_page)
       end
     end
