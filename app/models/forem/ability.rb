@@ -48,6 +48,10 @@ module Forem
         user.can_edit_forem_posts?(forum)
       end
       
+      can :edit_post, Forem::Post do |post|
+        user.can_edit_forem_post?(post)
+      end
+
       can :destroy_post, Forem::Forum do |forum|
         user.can_destroy_forem_posts?(forum)
       end

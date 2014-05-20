@@ -5,12 +5,12 @@ module Forem
     before_filter :reject_locked_topic!, :only => [:create]
     before_filter :block_spammers, :only => [:new, :create]
     before_filter :authorize_reply_for_topic!, :only => [:new, :create]
-    before_filter :authorize_edit_post_for_forum!, :only => [:edit, :update]
+    # before_filter :authorize_edit_post_for_forum!, :only => [:edit, :update]
     before_filter :find_post_for_topic, :only => [:edit, :update, :destroy]
     before_filter :ensure_post_ownership!, :only => [:destroy]
     # before_filter :authorize_destroy_post_for_forum!, :only => [:destroy]
     before_filter :authorize_destroy_post!, only: [:destroy]
-
+    before_filter :authorize_edit_post!, only: [:edit, :update]
     def new
       @post = @topic.posts.build
       find_reply_to_post
@@ -66,12 +66,16 @@ module Forem
       authorize! :edit_post, @topic.forum
     end
 
+    def authorize_edit_post!
+      authorize! :edit_post, @post
+    end
+
     # def authorize_destroy_post_for_forum!
     #   authorize! :destroy_post, @topic.forum
     # end
 
     def authorize_destroy_post!
-      authorize! :destroy_postm, @post
+      authorize! :destroy_post, @post
     end
     def create_successful
       flash[:notice] = t("forem.post.created")
