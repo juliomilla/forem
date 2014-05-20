@@ -11,6 +11,7 @@ module Forem
     # before_filter :authorize_destroy_post_for_forum!, :only => [:destroy]
     before_filter :authorize_destroy_post!, only: [:destroy]
     before_filter :authorize_edit_post!, only: [:edit, :update]
+    
     def new
       @post = @topic.posts.build
       find_reply_to_post
