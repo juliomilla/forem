@@ -7,6 +7,7 @@ module Forem
     # include Concerns::NilUser
 
     workflow_column :state
+
     workflow do
       state :pending_review do
         event :spam,    :transitions_to => :spam
@@ -21,14 +22,14 @@ module Forem
     # Used in the moderation tools partial
     attr_accessor :moderation_option
 
-    belongs_to :topic, counter_cache: true
-    belongs_to :user,     :class_name => Forem.user_class.to_s, counter_cache: :forum_posts_count
+    belongs_to :topic,       counter_cache: true
+    belongs_to :user,       :class_name => Forem.user_class.to_s, counter_cache: :forum_posts_count
     belongs_to :forem_user, :class_name => Forem.user_class.to_s, :foreign_key => :user_id, counter_cache: :forum_posts_count
-    belongs_to :reply_to, :class_name => "Post"
+    belongs_to :reply_to,   :class_name => "Post"
 
-    has_many :replies, :class_name  => "Post",
-                       :foreign_key => "reply_to_id",
-                       :dependent   => :nullify
+    has_many :replies,  :class_name  => "Post",
+                        :foreign_key => "reply_to_id",
+                        :dependent   => :nullify
 
     validates :text, :presence => true
 
@@ -57,11 +58,11 @@ module Forem
     end
 
     def increment_A_counter_cache
-        Forum.increment_counter( 'posts_count', self.forum.id )
+        Forum.increment_counter('posts_count', self.forum.id)
     end
 
     def decrement_A_counter_cache
-        Forum.decrement_counter( 'posts_count', self.forum.id )
+        Forum.decrement_counter('posts_count', self.forum.id)
     end
 
     class << self
@@ -72,8 +73,8 @@ module Forem
       def approved_or_pending_review_for(user)
         if user
           where arel_table[:state].eq('approved').or(
-                  arel_table[:state].eq('pending_review').and(arel_table[:user_id].eq(user.id))
-                )
+            arel_table[:state].eq('pending_review').and(arel_table[:user_id].eq(user.id))
+          )
         else
           approved
         end
@@ -153,6 +154,5 @@ module Forem
     def spam
       user.update_column(:forem_state, "spam") if user
     end
-
   end
 end

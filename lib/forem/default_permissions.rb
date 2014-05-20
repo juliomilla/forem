@@ -37,13 +37,13 @@ module Forem
 
       unless method_defined?(:can_edit_forem_posts?)
         def can_edit_forem_posts?(forum)
-          true
+          forem_admin
         end
       end
 
       unless method_defined?(:can_destroy_forem_posts?)
         def can_destroy_forem_posts?(forum)
-          true
+          forem_admin
         end
       end
 

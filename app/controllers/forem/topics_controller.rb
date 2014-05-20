@@ -10,7 +10,6 @@ module Forem
     #   offset = params[:offset]
     #   limit |= 10
     #   offset |= 0
-
     #   @topics = Forem::Topic.order('last_post_at DESC').limit(limit).offset(offset)
     #   render 'topics', layout: !request.xhr?
     # end
@@ -134,6 +133,7 @@ module Forem
     end
 
     private
+    
     def find_forum
       @forum = Forem::Forum.friendly.find(params[:forum_id])
       authorize! :read, @forum
