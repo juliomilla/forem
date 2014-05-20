@@ -17,12 +17,12 @@ module Forem
       offset = params[:offset]
       limit ||= 10
       offset ||= 0
-      @topics = Forem::Topic.with_last_post.with_poll.order('last_post_at DESC').limit(limit).offset(offset)
+      @topics = Forem::Topic.with_last_post.with_poll.with_forum.order('last_post_at DESC').limit(limit).offset(offset)
       render 'forem/forums/topics_list', layout: !request.xhr?
     end
 
     def index
-      @fresh_topics = Forem::Topic.with_last_post.with_poll.order('last_post_at DESC').limit(5)
+      @fresh_topics = Forem::Topic.with_last_post.with_poll.with_forum.order('last_post_at DESC').limit(5)
       @categories = Forem::Category.with_forums_topics_posts.all
     end
 
