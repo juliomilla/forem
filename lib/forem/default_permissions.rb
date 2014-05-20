@@ -31,7 +31,7 @@ module Forem
 
       unless method_defined?(:can_reply_to_forem_topic?)
         def can_reply_to_forem_topic?(topic)
-          true || true
+          true
         end
       end
 
