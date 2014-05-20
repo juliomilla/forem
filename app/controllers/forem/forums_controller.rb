@@ -2,6 +2,16 @@ module Forem
   class ForumsController < Forem::ApplicationController
     load_and_authorize_resource :class => 'Forem::Forum', :only => :show
     helper 'forem/topics'
+
+    def hot_topics
+      limit = params[:limit]
+      offset = params[:offset]
+      limit ||= 10
+      offset ||= 0
+      @topics Forem::Topic.order_hot.with_last_post.with_poll.limit(limit).offset(offset)
+      render 'forem/forums/topics_list', layout: !request.xhr?
+    end
+
     def fresh_topics
       limit = params[:limit]
       offset = params[:offset]
@@ -10,10 +20,12 @@ module Forem
       @topics = Forem::Topic.with_last_post.with_poll.order('last_post_at DESC').limit(limit).offset(offset)
       render 'forem/forums/topics_list', layout: !request.xhr?
     end
+
     def index
       @fresh_topics = Forem::Topic.with_last_post.with_poll.order('last_post_at DESC').limit(5)
       @categories = Forem::Category.with_forums_topics_posts.all
     end
+
     def show
       authorize! :show, @forum
       register_view
