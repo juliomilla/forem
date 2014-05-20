@@ -46,7 +46,7 @@ module Forem
     scope :with_last_post, -> { includes last_post: {user: {}, topic: {}, forum: {} } }
     scope :with_poll, -> { includes :poll }
     scope :with_forum, -> { includes :forum }
-    
+
     class << self
       def visible
         where(:hidden => false)
