@@ -3,6 +3,7 @@ module Forem
   # Access (most) areas by default
   module DefaultPermissions
     extend ActiveSupport::Concern
+
     included do
       unless method_defined?(:can_read_forem_category?)
         def can_read_forem_category?(category)
@@ -36,21 +37,15 @@ module Forem
 
       unless method_defined?(:can_edit_forem_posts?)
         def can_edit_forem_posts?(forum)
-          forem_admin
+          true
         end
       end
 
       unless method_defined?(:can_destroy_forem_posts?)
         def can_destroy_forem_posts?(forum)
-          forem_admin
+          true
         end
       end
-
-      # unless method_defined?(:can_destroy_forem_post?)
-      #   def can_destroy_forem_post?(post)
-      #     forem_admin || post.user == self
-      #   end
-      # end
 
       unless method_defined?(:can_read_forem_topic?)
         def can_read_forem_topic?(topic)

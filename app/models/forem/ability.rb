@@ -52,10 +52,6 @@ module Forem
         user.can_destroy_forem_posts?(forum)
       end
       
-      # can :destroy, Forem::Post do |post|
-      #   user.can_destroy_forem_post?(post)
-      # end
-
       can :moderate, Forem::Forum do |forum|
         user.can_moderate_forem_forum?(forum) || user.forem_admin?
       end
