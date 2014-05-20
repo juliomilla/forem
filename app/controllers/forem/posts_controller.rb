@@ -8,7 +8,8 @@ module Forem
     before_filter :authorize_edit_post_for_forum!, :only => [:edit, :update]
     before_filter :find_post_for_topic, :only => [:edit, :update, :destroy]
     before_filter :ensure_post_ownership!, :only => [:destroy]
-    before_filter :authorize_destroy_post_for_forum!, :only => [:destroy]
+    # before_filter :authorize_destroy_post_for_forum!, :only => [:destroy]
+    before_filter :authorize_destroy_post!, only: [:destroy]
 
     def new
       @post = @topic.posts.build
@@ -45,8 +46,10 @@ module Forem
     end
 
     def destroy
-      @post.destroy
-      destroy_successful
+      if forem_user.can_destroy_forem_post? @post
+        @post.destroy
+        destroy_successful
+      end
     end
 
     private
@@ -63,10 +66,13 @@ module Forem
       authorize! :edit_post, @topic.forum
     end
 
-    def authorize_destroy_post_for_forum!
-      authorize! :destroy_post, @topic.forum
-    end
+    # def authorize_destroy_post_for_forum!
+    #   authorize! :destroy_post, @topic.forum
+    # end
 
+    def authorize_destroy_post!
+      authorize! :destroy_postm, @post
+    end
     def create_successful
       flash[:notice] = t("forem.post.created")
       redirect_to forum_topic_url(@topic.forum, @topic, pagination_param => @topic.last_page)
