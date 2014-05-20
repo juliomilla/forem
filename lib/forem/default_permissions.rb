@@ -46,11 +46,11 @@ module Forem
         end
       end
 
-      unless method_defined?(:can_destroy_forem_post?)
-        def can_destroy_forem_post?(post)
-          forem_admin || post.user == self
-        end
-      end
+      # unless method_defined?(:can_destroy_forem_post?)
+      #   def can_destroy_forem_post?(post)
+      #     forem_admin || post.user == self
+      #   end
+      # end
 
       unless method_defined?(:can_read_forem_topic?)
         def can_read_forem_topic?(topic)
