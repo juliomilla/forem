@@ -1,7 +1,6 @@
 module Forem
   class Post < ActiveRecord::Base
     include Workflow
-    
     include Concerns::Flaggable
 
     # include Concerns::NilUser

@@ -6,16 +6,26 @@ module Forem
     before_filter :block_spammers, :only => [:new, :create]
     before_filter :authorize_reply_for_topic!, :only => [:new, :create]
     # before_filter :authorize_edit_post_for_forum!, :only => [:edit, :update]
-    before_filter :find_post_for_topic, :only => [:edit, :update, :destroy]
+    before_filter :find_post_for_topic, :only => [:edit, :update, :destroy, :show]
     before_filter :ensure_post_ownership!, :only => [:destroy]
     # before_filter :authorize_destroy_post_for_forum!, :only => [:destroy]
     before_filter :authorize_destroy_post!, only: [:destroy]
     before_filter :authorize_edit_post!, only: [:edit, :update]
     
+    def show
+      index = topic.posts.to_a.index (@post)
+      page = Kaminari.config.default_per_page % index
+      if @topic.slug
+        slug = @topic.slug
+      else
+        slug = @topic.id
+      end
+      redirect_to forum_topic_path(@topic.forum.slug, slug, page: page)
+    end
+
     def new
       @post = @topic.posts.build
       find_reply_to_post
-
       if params[:quote] && @reply_to_post
         @post.text = view_context.forem_quote(@reply_to_post.text)
       elsif params[:quote] && !@reply_to_post
@@ -27,7 +37,6 @@ module Forem
     def create
       @post = @topic.posts.build(post_params)
       @post.user = forem_user
-
       if @post.save
         create_successful
       else

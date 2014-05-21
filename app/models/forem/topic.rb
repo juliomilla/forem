@@ -47,6 +47,8 @@ module Forem
     scope :with_poll, -> { includes :poll }
     scope :with_forum, -> { includes :forum }
 
+    alias_method :slug, :old_slug
+
     class << self
       def visible
         where(:hidden => false)
