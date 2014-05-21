@@ -20,12 +20,10 @@ module Forem
 
     alias_attribute :title, :name
 
-    # Fix for #339
     default_scope { order(:name) }
 
     scope :with_last_post, -> { includes :last_post }
     scope :with_category, -> { includes :category }
-    scope :with_moderators, -> { includes :moderators }
     def last_post_for(forem_user)
       if forem_user && (forem_user.forem_admin? || moderator?(forem_user))
         posts.last
