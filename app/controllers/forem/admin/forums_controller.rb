@@ -5,7 +5,7 @@ module Forem
 
       def index
         # @forums = Forem::Forum.with_category.order(:category_id)
-        @categories = Forem::Category.with_forums_topics_posts
+        @categories = Forem::Category.with_forums_topics_posts.with_moderators
       end
 
       def new
