@@ -13,7 +13,7 @@ module Forem
     before_filter :authorize_edit_post!, only: [:edit, :update]
     
     def show
-      index = topic.posts.to_a.index (@post)
+      index = @topic.posts.to_a.index (@post)
       page = Kaminari.config.default_per_page % index
       if @topic.slug
         slug = @topic.slug
