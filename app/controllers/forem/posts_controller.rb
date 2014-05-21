@@ -14,7 +14,7 @@ module Forem
     
     def show
       index = @topic.posts.to_a.index (@post)
-      page = Kaminari.config.default_per_page % index
+      page = (index.to_f / Forem.per_page.to_f).ceil
       if @topic.slug
         slug = @topic.slug
       else
