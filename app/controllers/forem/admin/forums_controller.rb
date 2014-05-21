@@ -4,7 +4,8 @@ module Forem
       before_filter :find_forum, :only => [:edit, :update, :destroy]
 
       def index
-        @forums = Forem::Forum.with_category.all
+        # @forums = Forem::Forum.with_category.order(:category_id)
+        @categories = Forem::Category.with_forums_topics_posts
       end
 
       def new
