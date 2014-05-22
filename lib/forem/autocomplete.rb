@@ -6,6 +6,5 @@ module Forem
       select("#{Forem.autocomplete_field}, id").
       order("#{Forem.autocomplete_field}")
     end
-
   end
 end
