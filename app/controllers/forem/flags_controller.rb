@@ -5,7 +5,7 @@ module Forem
       flaggable = Post.find(params[:post_id])
       # end
       @flag = Flag.new
-      @flag.forem_flaggable = flaggable
+      @flag.flaggable = flaggable
       @flag.user = current_user
       if @flag.save
         respond_to do |format|
