@@ -56,7 +56,7 @@ module Forem
     end
 
     def destroy
-      if forem_user.can_destroy_forem_post? @post || forem_user.can_destroy_forem_posts? @topic.forum
+      if forem_user.can_destroy_forem_post?(@post) || forem_user.can_destroy_forem_posts?(@post.forum)
         @post.destroy
         destroy_successful
       end
@@ -80,9 +80,9 @@ module Forem
       authorize! :edit_post, @post
     end
 
-    # def authorize_destroy_post_for_forum!
-    #   authorize! :destroy_post, @topic.forum
-    # end
+    def authorize_destroy_post_for_forum!
+      authorize! :destroy_post, @post.forum
+    end
 
     def authorize_destroy_post!
       authorize! :destroy_post, @post
