@@ -56,7 +56,7 @@ module Forem
     end
 
     def destroy
-      if forem_user.can_destroy_forem_post? @post
+      if forem_user.can_destroy_forem_post? @post || forem_user.can_destroy_forem_posts? @topic.forum
         @post.destroy
         destroy_successful
       end

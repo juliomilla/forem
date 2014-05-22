@@ -1,9 +1,9 @@
 module Forem
   class FlagsController < Forem::ApplicationController
     def create
-      if params[:post_id]
-        flaggable = Post.find(params[:post_id])
-      end
+      # if params[:post_id]
+      flaggable = Post.find(params[:post_id])
+      # end
       @flag = Flag.new
       @flag.forem_flaggable = flaggable
       @flag.user = current_user
