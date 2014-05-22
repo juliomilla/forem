@@ -119,7 +119,7 @@ module Forem
     end
 
     def ensure_post_ownership!
-      unless @post.owner_or_admin?(forem_user) || @post.forum.moderator?(forem_user)
+      unless (@post.owner_or_admin?(forem_user) || @post.forum.moderator?(forem_user))
         flash[:alert] = t("forem.post.cannot_delete")
         redirect_to [@topic.forum, @topic] and return
       end
