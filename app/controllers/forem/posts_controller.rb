@@ -48,7 +48,7 @@ module Forem
     end
 
     def update
-      if @post.owner_or_admin?(forem_user) && @post.update_attributes(post_params)
+      if (forem_user.can_edit_forem_post?(@post) || forem_user.can_edit_forem_posts?(@post.forum)) && @post.update_attributes(post_params)
         update_successful
       else
         update_failed
