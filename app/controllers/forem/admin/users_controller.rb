@@ -3,7 +3,14 @@ module Forem
     def autocomplete
       users = Forem.user_class.forem_autocomplete(params[:term])
       users = users.map do |u|
-        { :id => u.id, :identifier => u.send(Forem.autocomplete_field) }
+        identifier = u.send(Forem.autocomplete_field)
+        if identifier.empty? || identifier.nil?
+          identifier = u.send('email')
+        end
+        if identifier.empty? || identifier.nil?
+          identifier = u.send('full_name')
+        end
+        { :id => u.id, :identifier => identifier }
       end
       render :json => users
     end

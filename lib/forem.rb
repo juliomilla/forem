@@ -36,6 +36,7 @@ module Forem
         def forem_moderate_posts?
           Forem.moderate_first_post && !forem_approved_to_post?
         end
+
         alias_method :forem_needs_moderation?, :forem_moderate_posts?
 
         def forem_approved_to_post?
