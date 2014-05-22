@@ -1,7 +1,9 @@
 module Forem
   class Admin::UsersController < ApplicationController
     def autocomplete
-      users = Forem.user_class.forem_autocomplete(params[:term])
+      # users = Forem.user_class.forem_autocomplete(params[:term])
+      
+      users = Forem.user_class.where('email LIKE ?', "%#{params[:term]}%").limit(10)
 
       users_hash = users.map do |user|
         { :id => user.id, :identifier => user.send(Forem.autocomplete_field)}
