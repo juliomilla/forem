@@ -4,11 +4,12 @@ module Forem
       users = Forem.user_class.forem_autocomplete(params[:term])
       users = users.map do |u|
         identifier = u.send(Forem.autocomplete_field)
+
         if identifier.empty? || identifier.nil?
-          identifier = u.send('email')
+          identifier = u.email
         end
         if identifier.empty? || identifier.nil?
-          identifier = u.send('full_name')
+          identifier = u.full_name
         end
         { :id => u.id, :identifier => identifier }
       end
