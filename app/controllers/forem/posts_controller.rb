@@ -23,17 +23,6 @@ module Forem
       redirect_to forum_topic_path(@topic.forum.slug, slug, page: page)
     end
 
-    def new
-      @post = @topic.posts.build
-      find_reply_to_post
-      if params[:quote] && @reply_to_post
-        @post.text = view_context.forem_quote(@reply_to_post.text)
-      elsif params[:quote] && !@reply_to_post
-        flash[:notice] = t("forem.post.cannot_quote_deleted_post")
-        redirect_to [@topic.forum, @topic]
-      end
-    end
-
     def create
       @post = @topic.posts.build(post_params)
       @post.user = forem_user
