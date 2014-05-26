@@ -4,7 +4,7 @@ Forem::Engine.routes.draw do
     resources :flags, only: [:create, :destroy]
   end
   resources :topics, only: [:new, :create, :index, :show, :destroy] do
-    resources :posts, concerns: [:flaggable]]
+    resources :posts, concerns: [:flaggable]
     post 'vote/:poll_option_id', controller: :polls, action: :vote, as: :vote
   end
 
