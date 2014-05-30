@@ -149,7 +149,7 @@ module Forem
 
     protected
     def set_first_post_user
-      unless user.nil? || posts.first.nil?
+      unless user.nil? || posts.first.nil? && !user.is_a?(Forem::NilUser)
         post = posts.first
         post.user = user
       end
