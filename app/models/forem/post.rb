@@ -128,14 +128,14 @@ module Forem
     def approve
       approve_user
       return if notified?
-      email_topic_subscribers
+      #email_topic_subscribers
     end
 
     def email_topic_subscribers
-      topic.subscriptions.includes(:subscriber).find_each do |subscription|
-        subscription.send_notification(id) if subscription.subscriber != user
-      end
-      update_column(:notified, true)
+      # topic.subscriptions.includes(:subscriber).find_each do |subscription|
+      #   subscription.send_notification(id) if subscription.subscriber != user
+      # end
+      # update_column(:notified, true)
     end
 
     def set_topic_last_post_at
