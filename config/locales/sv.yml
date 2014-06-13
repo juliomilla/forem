@@ -40,6 +40,7 @@ sv:
       edit_post: "Ändra inlägg"
       user_missing: Användare saknas
       you_have_to_be_logged_in_to_reply_to_this_topic: Du måste vara inloggad för att svara i tråden.
+      latest: "Senaste"
     access_denied: "Du har inte tillåtelse att göra det."
     admin:
       area: Administratörsområde
