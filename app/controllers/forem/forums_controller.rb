@@ -22,7 +22,7 @@ module Forem
     end
 
     def index
-      @fresh_topics = Forem::Topic.with_last_post.with_poll.with_forum.order('last_post_at DESC').limit(5)
+      @fresh_topics = Forem::Topic.with_last_post.with_poll.with_forum.order('last_post_at DESC').limit(15)
       @categories = Forem::Category.with_forums_topics_posts.all
     end
 
