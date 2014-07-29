@@ -5,15 +5,6 @@ module Forem
     before_filter :find_forum
     before_filter :block_spammers, :only => [:new, :create]
 
-    # def fresh_topics
-    #   limit = params[:limit]
-    #   offset = params[:offset]
-    #   limit |= 10
-    #   offset |= 0
-    #   @topics = Forem::Topic.order('last_post_at DESC').limit(limit).offset(offset)
-    #   render 'topics', layout: !request.xhr?
-    # end
-
     def show
       if find_topic
         register_view(@topic, forem_user)
