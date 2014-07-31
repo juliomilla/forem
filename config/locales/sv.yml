@@ -170,6 +170,7 @@ sv:
         topic: Tråd
         post: Inlägg
         latest_contributor: Senaste postare
+        latest: Senaste
         freshness: Fräschhet
         user_missing: Användare saknas
       show:
