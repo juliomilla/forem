@@ -1,8 +1,15 @@
 module Forem
   class PollsController < Forem::ApplicationController
-    before_filter :authenticate_forem_user
+    # before_filter :authenticate_forem_user
 
     def vote
+      if !forem_user
+        respond_to do |format|
+          format.js { render nothing: true, status: 401 }
+          format.html { render nothing: true, status: 401 }
+        end
+      end
+
       poll_option = Forem::PollOption.find(params[:poll_option_id])
       poll_option.votes = poll_option.votes + 1
       poll_option.poll.voting_users << forem_user
