@@ -3,7 +3,7 @@ module Forem
     # before_filter :authenticate_forem_user
 
     def vote
-      if !forem_user
+      if (forem_user.is_a? NilClass) || !forem_user
         respond_to do |format|
           format.js { render nothing: true, status: 401 }
           format.html { render nothing: true, status: 401 }
