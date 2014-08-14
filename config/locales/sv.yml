@@ -194,6 +194,7 @@ sv:
         send: Skicka
         reply: Svara
         edit: Redigera
+        log_in: Logga in
       created: Ditt svar har postats
       new: Posta svar till
       edit: Redigera
@@ -207,6 +208,7 @@ sv:
       in_reply_to: i svar på
       post: inlägg
       placeholder: Skriv ditt svar...
+      placeholder_log_in: Du måste logga in för att kunna skriva i tråden. Att skapa ett konto är gratis och går blixtsnabbt.
       new_post_placeholder: Skriv det första inlägget i tråden...
     posts:
       moderation:
