@@ -209,6 +209,7 @@ sv:
       post: inlägg
       placeholder: Skriv ditt svar...
       placeholder_log_in: Du måste logga in för att kunna skriva i tråden. Att skapa ett konto är gratis och går blixtsnabbt.
+      placeholder_mobile: Logga in för att skriva i tråden
       new_post_placeholder: Skriv det första inlägget i tråden...
     posts:
       moderation:
