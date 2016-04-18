@@ -48,6 +48,18 @@ module Forem
     after_create :increment_A_counter_cache
     after_create :set_as_last_post
     after_destroy :decrement_A_counter_cache
+    after_destroy :check_and_update_last_post
+
+    def check_and_update_last_post
+      if topic.last_post.nil? 
+        topic.last_post = topic.posts.last
+        topic.save
+      end
+      if forum.last_post.nil?
+        forum.last_post = forum.posts.last
+        forum.save
+      end
+    end
 
     def set_as_last_post
       forum.last_post = self
