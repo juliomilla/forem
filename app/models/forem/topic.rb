@@ -5,6 +5,17 @@ module Forem
     include Forem::Concerns::NilUser
     include Workflow
 
+    # -------------------- ElasticSearch ----------------------
+    searchkick index_name: "forem_topics", batch_size: 200, match: :word_start, callbacks: :async
+
+    def search_data
+      {
+        subject: subject,
+        popularity_index: popularity_index
+      }
+    end
+    # ---------------------------------------------------------
+
     workflow_column :state
     workflow do
       state :pending_review do
@@ -21,6 +32,8 @@ module Forem
 
     extend FriendlyId
     friendly_id :subject, :use => [:slugged, :finders]
+
+
 
     belongs_to :forum, counter_cache: true
     belongs_to :user, :class_name => Forem.user_class.to_s
